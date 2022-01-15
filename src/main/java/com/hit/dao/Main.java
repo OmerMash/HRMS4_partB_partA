@@ -2,8 +2,6 @@ package com.hit.dao;
 
 import com.hit.algorithm.Person;
 import com.hit.controller.SearchControllerService;
-import com.hit.dao.*;
-
 import java.io.IOException;
 
 public class Main {
