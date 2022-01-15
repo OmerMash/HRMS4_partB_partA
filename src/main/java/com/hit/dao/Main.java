@@ -1,4 +1,9 @@
+package com.hit.dao;
+
 import com.hit.algorithm.Person;
+import com.hit.controller.SearchControllerService;
+import com.hit.dao.*;
+
 import java.io.IOException;
 
 public class Main {
@@ -10,10 +15,10 @@ public class Main {
         try {
             Person personToDelete;
 
-            int listSize = dao.getList().size();
-            System.out.println(listSize);
-
             SearchControllerService controllerService = new SearchControllerService();
+
+            int listSize = controllerService.getDao().getList().size();
+            System.out.println(listSize);
 
             controllerService.addPerson("omer3", 25, "123445689", "dev", 1);
 

@@ -1,5 +1,5 @@
 import com.hit.algorithm.Person;
-import org.junit.jupiter.api.BeforeAll;
+import com.hit.controller.SearchControllerService;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -12,34 +12,26 @@ class MyDaoFileImplTest {
     Person personToDelete;
 
     @Test
-    void add() {
-        try {
-        int personListSizeBeforeAddingPersons = controllerService.dao.getList().size();
+    void add() throws IOException {
+        int personListSizeBeforeAddingPersons = controllerService.getDao().getList().size();
         int personListSizeAfterAddingPersons;
             controllerService.addPerson("omer3", 25, "123445689", "dev", 1);
             controllerService.addPerson("omer4", 26, "123445679", "dev", 2);
-            personListSizeAfterAddingPersons = controllerService.dao.getList().size();
+            personListSizeAfterAddingPersons = controllerService.getDao().getList().size();
             assertEquals(personListSizeAfterAddingPersons - personListSizeBeforeAddingPersons, 2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test
-    void remove() {
-        int personListSizeBeforeAddingPerson = controllerService.dao.getList().size();
+    void remove() throws IOException {
+        int personListSizeBeforeAddingPerson = controllerService.getDao().getList().size();
         int personListSizeAfterAddingPerson;
         int personListSizeAfterRemovingPerson;
-        try {
             personToDelete = controllerService.addPerson("person_to_delete", 25, "123445689", "dev", 1);
-            personListSizeAfterAddingPerson = controllerService.dao.getList().size();
+            personListSizeAfterAddingPerson = controllerService.getDao().getList().size();
             assertEquals(personListSizeBeforeAddingPerson + 1, personListSizeAfterAddingPerson);
             controllerService.removePerson(personToDelete);
-            personListSizeAfterRemovingPerson = controllerService.dao.getList().size();
+            personListSizeAfterRemovingPerson = controllerService.getDao().getList().size();
             assertEquals(personListSizeBeforeAddingPerson, personListSizeAfterRemovingPerson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test

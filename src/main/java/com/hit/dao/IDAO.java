@@ -1,3 +1,5 @@
+package com.hit.dao;
+
 import com.hit.algorithm.Person;
 import java.util.List;
 
