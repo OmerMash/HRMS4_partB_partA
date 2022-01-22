@@ -6,16 +6,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import com.hit.service.Clock;
 
 public class SearchControllerService {
 
     private static ObjectOutputStream output;
     private static ObjectInputStream input;
     private IAlgoSearch algoSearch;
+    private Clock clock;
 
     public IDAO getDao() {
         return dao;
     }
+
+
 
     private IDAO dao;
     private List<Person> searchResult;
@@ -24,6 +28,9 @@ public class SearchControllerService {
     public SearchControllerService() {
         try {
             this.dao = new MyDaoFileImpl("person_ser");  //create model object
+            this.clock = new Clock();
+            clock.start();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +63,8 @@ public class SearchControllerService {
     }
 
     public boolean save() {
-        return dao.writeListToFile(dao.getList());
+        String time = this.clock.getTime();
+        return dao.writeListToFile(dao.getList(), time);
     }
 
     public void removePerson(Person p){

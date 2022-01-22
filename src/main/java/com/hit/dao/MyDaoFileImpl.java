@@ -25,7 +25,7 @@ public class MyDaoFileImpl implements IDAO {
         }
     }
 
-    public boolean writeListToFile(List<Person> personsList){
+    public boolean writeListToFile(List<Person> personsList, String time){
         try {
             output = new ObjectOutputStream(Files.newOutputStream(Paths.get("person_ser")));
         } catch (IOException e) {
@@ -34,6 +34,8 @@ public class MyDaoFileImpl implements IDAO {
         for (Person p : personsList) {
             try {
                 output.writeObject(p);
+                output.writeObject(time);
+                System.out.println(p + " - time: " + time);
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;

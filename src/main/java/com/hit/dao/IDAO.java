@@ -7,7 +7,7 @@ public interface IDAO {
 
     List<Person> getList();
 
-    boolean writeListToFile(List<Person> l);
+    boolean writeListToFile(List<Person> l, String S);
 
     void add(Person p);
 
